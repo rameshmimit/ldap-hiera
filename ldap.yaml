@@ -1,0 +1,21 @@
+---
+classes:
+ - ldap
+
+server::master:
+  suffix: 'dc=foo,dc=bar'
+  rootpw: '{SHA}iEPX+SQWIR3p67lj/0zigSWTKHg='
+  binddn: 'false'
+  bindpw: 'false'
+  syncprov: true
+  sync_binddn: 'cn=sync,dc=foo,dc=bar'
+  modules_inc: 'syncprov'
+  schema_inc: [ 'gosa/samba3', 'gosa/gosystem' ]
+  index_inc:
+    - index memberUid:
+      - eq
+    - index mail:
+      - eq
+    - index givenName:
+      - eq
+      - subinitial
